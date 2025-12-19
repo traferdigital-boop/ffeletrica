@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
@@ -38,15 +38,15 @@
     </script>
 
     <style>
-      body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #fafafa; margin: 0; }
+      body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #fafafa; margin: 0; -webkit-font-smoothing: antialiased; }
       h1, h2, h3, .brand-font { font-family: 'Alexandria', sans-serif; }
       .grid-pattern { background-image: radial-gradient(rgba(250, 204, 21, 0.03) 1px, transparent 1px); background-size: 30px 30px; }
-      .glass { background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+      .glass { background: rgba(24, 24, 27, 0.9); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
       .service-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); background: #18181b; border: 1px solid rgba(255,255,255,0.03); }
-      .service-card:hover { transform: translateY(-8px); border-color: #FACC15; box-shadow: 0 20px 40px -20px rgba(250, 204, 21, 0.2); }
-      @keyframes pulse-yellow { 0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(250, 204, 21, 0); } 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); } }
+      .service-card:hover { transform: translateY(-8px); border-color: #FACC15; box-shadow: 0 15px 30px -10px rgba(250, 204, 21, 0.15); }
+      @keyframes pulse-yellow { 0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(250, 204, 21, 0); } 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); } }
       .pulse { animation: pulse-yellow 2s infinite; }
-      .sharp-text { filter: none; text-shadow: none; }
+      .sharp-render { transform: translateZ(0); backface-visibility: hidden; -webkit-font-smoothing: subpixel-antialiased; }
     </style>
 <script type="importmap">
 {
@@ -74,7 +74,7 @@
 
         const App = () => {
           return (
-            <div className="min-h-screen flex flex-col relative overflow-hidden">
+            <div className="min-h-screen flex flex-col relative overflow-hidden bg-electric-dark">
               <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
 
               {/* Navbar */}
@@ -90,7 +90,7 @@
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <a href="https://wa.me/5511949759433" target="_blank" className="bg-electric-yellow text-black px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-electric-yellow/10 active:scale-95">
+                    <a href="https://wa.me/5511949759433" target="_blank" className="bg-electric-yellow text-black px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-md shadow-electric-yellow/10 active:scale-95">
                       Orçamento via WhatsApp
                     </a>
                   </div>
@@ -107,9 +107,9 @@
                   Atendimento: Vale do Paraíba • Alto Tietê • São Paulo
                 </div>
                 
-                <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-10 leading-[0.9] text-white">
+                <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-10 leading-[0.9] text-white sharp-render">
                     Serviços de <br/>
-                    <span className="text-electric-yellow italic sharp-text">Elétrica</span> <br/>
+                    <span className="text-electric-yellow italic">Elétrica</span> <br/>
                     Profissional
                 </h1>
                 
@@ -118,17 +118,17 @@
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                  <a href="https://wa.me/5511949759433?text=Olá%20FF%20Elétrica,%20gostaria%20de%20um%20orçamento" target="_blank" className="pulse bg-electric-yellow text-black px-14 py-6 rounded-3xl font-black uppercase text-sm tracking-widest hover:bg-white transition-all shadow-xl shadow-electric-yellow/5">
+                  <a href="https://wa.me/5511949759433?text=Olá%20FF%20Elétrica,%20gostaria%20de%20um%20orçamento" target="_blank" className="pulse bg-electric-yellow text-black px-14 py-6 rounded-3xl font-black uppercase text-sm tracking-widest hover:bg-white transition-all shadow-lg shadow-electric-yellow/5 sharp-render">
                     Solicitar Visita Técnica
                   </a>
-                  <a href="#servicos" className="bg-zinc-800/50 border border-zinc-700/50 px-14 py-6 rounded-3xl font-bold uppercase text-sm tracking-widest hover:bg-zinc-800 transition-all">
+                  <a href="#servicos" className="bg-zinc-800/50 border border-zinc-700/50 px-14 py-6 rounded-3xl font-bold uppercase text-sm tracking-widest hover:bg-zinc-800 transition-all sharp-render">
                     Explorar Serviços
                   </a>
                 </div>
               </header>
 
               {/* Serviços Grid */}
-              <section id="servicos" className="py-28 px-6 bg-zinc-950/50 border-t border-white/5 relative">
+              <section id="servicos" className="py-28 px-6 bg-zinc-950/30 border-t border-white/5 relative">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
                         <div className="max-w-2xl text-left">
@@ -159,7 +159,7 @@
               <section className="py-32 px-6 relative overflow-hidden bg-black/40">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20 text-left">
                     <div className="flex-1 relative w-full flex justify-center">
-                        <div className="absolute w-80 h-80 bg-electric-yellow/10 blur-[100px] rounded-full"></div>
+                        <div className="absolute w-80 h-80 bg-electric-yellow/5 blur-[100px] rounded-full"></div>
                         <div className="relative aspect-square w-full max-w-sm bg-zinc-900 rounded-[80px] overflow-hidden border border-zinc-800 flex items-center justify-center shadow-2xl">
                             <div className="flex flex-col items-center">
                                 <div className="w-24 h-24 bg-electric-yellow rounded-3xl flex items-center justify-center mb-6 shadow-xl shadow-electric-yellow/20">
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                     <div className="flex-1 space-y-10">
-                        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-white">Por que <br/><span className="text-electric-yellow italic sharp-text">escolher a FF?</span></h2>
+                        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-white">Por que <br/><span className="text-electric-yellow italic">escolher a FF?</span></h2>
                         <p className="text-xl text-zinc-400 leading-relaxed font-light italic border-l-2 border-electric-yellow pl-8">
                             "A FF Elétrica entrega segurança, eficiência energética e tecnologia de ponta para sua comodidade. Transformamos sua infraestrutura com o que há de mais moderno no mercado."
                         </p>
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                         <div className="pt-4">
-                            <a href="https://wa.me/5511949759433" target="_blank" className="inline-block bg-white text-black px-12 py-5 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-electric-yellow transition-all shadow-xl">
+                            <a href="https://wa.me/5511949759433" target="_blank" className="inline-block bg-white text-black px-12 py-5 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-electric-yellow transition-all shadow-lg">
                                 Solicitar Contato
                             </a>
                         </div>
@@ -189,7 +189,7 @@
                 </div>
               </section>
 
-              {/* Footer - Ajustado para tom mais claro nas informações de direitos/desenvolvedor */}
+              {/* Footer */}
               <footer className="w-full border-t border-white/5 py-20 px-6 bg-zinc-950 text-center">
                 <div className="max-w-7xl mx-auto flex flex-col items-center gap-10">
                   <div className="flex items-center gap-3 opacity-90 transition-all cursor-default">
@@ -216,9 +216,15 @@
                 </div>
               </footer>
 
-              {/* Floating WhatsApp Mobile */}
-              <a href="https://wa.me/5511949759433" target="_blank" className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338-11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.148-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              {/* Floating WhatsApp Mobile - Corrigido desfoque/blur */}
+              <a 
+                href="https://wa.me/5511949759433" 
+                target="_blank" 
+                className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 transform-gpu sharp-render"
+              >
+                <svg className="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" style={{ filter: 'none' }}>
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.148-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
               </a>
             </div>
           );
@@ -228,4 +234,5 @@
         root.render(<App />);
     </script>
 </body>
-</html>
+</html>        
+            
