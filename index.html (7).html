@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>FF Elétrica - Serviços de Elétrica Profissional</title>
+    <meta name="description" content="FF Elétrica - Eletricista profissional atendendo Vale do Paraíba, Alto Tietê e São Paulo. Solicite seu orçamento via WhatsApp." />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              electric: {
+                yellow: '#FACC15',
+                dark: '#09090b',
+                card: '#18181b',
+                accent: '#EAB308'
+              },
+              trafer: {
+                blue: '#38bdf8'
+              }
+            },
+            fontFamily: {
+              alexandria: ['Alexandria', 'sans-serif'],
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #fafafa; margin: 0; }
+      h1, h2, h3, .brand-font { font-family: 'Alexandria', sans-serif; }
+      .grid-pattern { background-image: radial-gradient(rgba(250, 204, 21, 0.03) 1px, transparent 1px); background-size: 30px 30px; }
+      .glass { background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+      .service-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); background: #18181b; border: 1px solid rgba(255,255,255,0.03); }
+      .service-card:hover { transform: translateY(-8px); border-color: #FACC15; box-shadow: 0 20px 40px -20px rgba(250, 204, 21, 0.2); }
+      @keyframes pulse-yellow { 0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(250, 204, 21, 0); } 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); } }
+      .pulse { animation: pulse-yellow 2s infinite; }
+      .sharp-text { filter: none; text-shadow: none; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "vite": "https://esm.sh/vite@^7.3.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const SERVICES = [
+          { id: 1, title: 'Elétrica Residencial', icon: '🏠', desc: 'Instalações de alto padrão, retrofits de fiação e quadros de comando inteligentes para sua residência.' },
+          { id: 2, title: 'Elétrica Predial', icon: '🏢', desc: 'Infraestrutura robusta para condomínios, manutenção preventiva programada e gestão de carga.' },
+          { id: 3, title: 'Manutenção', icon: '🛠️', desc: 'Diagnóstico técnico preciso, correção de falhas críticas e termografia de painéis elétricos.' },
+          { id: 4, title: 'Instalações em Geral', icon: '💡', desc: 'Projetos de iluminação, instalação de ventiladores e sistemas de proteção contra surtos.' },
+          { id: 5, title: 'Fechadura Eletrônica', icon: '🔐', desc: 'Tecnologia de acesso biométrico e digital integrada para segurança total da sua propriedade.' },
+          { id: 6, title: 'Automatização', icon: '📱', desc: 'Transformamos seu imóvel em uma Smart Home com controle centralizado via smartphone.' }
+        ];
+
+        const App = () => {
+          return (
+            <div className="min-h-screen flex flex-col relative overflow-hidden">
+              <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
+
+              {/* Navbar */}
+              <nav className="w-full z-50 px-6 py-4 glass sticky top-0">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-electric-yellow rounded-xl flex items-center justify-center shadow-lg shadow-electric-yellow/20">
+                        <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-base font-black leading-none tracking-tight uppercase brand-font text-white">FF Elétrica</span>
+                        <span className="text-[9px] text-electric-yellow font-bold uppercase tracking-widest text-left">Instalações Elétricas</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <a href="https://wa.me/5511949759433" target="_blank" className="bg-electric-yellow text-black px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-electric-yellow/10 active:scale-95">
+                      Orçamento via WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </nav>
+
+              {/* Hero Section */}
+              <header className="relative pt-24 pb-36 px-6 flex flex-col items-center text-center">
+                <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-electric-yellow/5 border border-electric-yellow/20 text-electric-yellow text-[10px] font-black uppercase tracking-[0.25em] mb-10">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-electric-yellow opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-electric-yellow"></span>
+                  </span>
+                  Atendimento: Vale do Paraíba • Alto Tietê • São Paulo
+                </div>
+                
+                <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-10 leading-[0.9] text-white">
+                    Serviços de <br/>
+                    <span className="text-electric-yellow italic sharp-text">Elétrica</span> <br/>
+                    Profissional
+                </h1>
+                
+                <p className="max-w-2xl text-xl text-zinc-400 mb-14 leading-relaxed font-light">
+                    Segurança, precisão e tecnologia. A <span className="text-white font-bold">FF Elétrica</span> entrega soluções definitivas para sua infraestrutura residencial ou corporativa.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                  <a href="https://wa.me/5511949759433?text=Olá%20FF%20Elétrica,%20gostaria%20de%20um%20orçamento" target="_blank" className="pulse bg-electric-yellow text-black px-14 py-6 rounded-3xl font-black uppercase text-sm tracking-widest hover:bg-white transition-all shadow-xl shadow-electric-yellow/5">
+                    Solicitar Visita Técnica
+                  </a>
+                  <a href="#servicos" className="bg-zinc-800/50 border border-zinc-700/50 px-14 py-6 rounded-3xl font-bold uppercase text-sm tracking-widest hover:bg-zinc-800 transition-all">
+                    Explorar Serviços
+                  </a>
+                </div>
+              </header>
+
+              {/* Serviços Grid */}
+              <section id="servicos" className="py-28 px-6 bg-zinc-950/50 border-t border-white/5 relative">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+                        <div className="max-w-2xl text-left">
+                            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-none italic">Excelência em <br/>cada conexão</h2>
+                            <p className="text-zinc-500 font-light text-base md:text-lg">Trabalhamos com os melhores componentes do mercado para garantir a máxima durabilidade do seu projeto.</p>
+                        </div>
+                        <div className="hidden md:block text-electric-yellow font-black text-xs uppercase tracking-widest border-b-2 border-electric-yellow pb-2">
+                            Nossas Soluções
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {SERVICES.map(s => (
+                            <div key={s.id} className="service-card p-12 rounded-[48px] flex flex-col group text-left">
+                                <div className="text-5xl mb-8 group-hover:scale-110 transition-transform origin-left">{s.icon}</div>
+                                <h3 className="text-2xl font-black uppercase tracking-tight mb-5 group-hover:text-electric-yellow transition-colors">{s.title}</h3>
+                                <p className="text-base text-zinc-500 leading-relaxed font-light mb-10">{s.desc}</p>
+                                <a href={`https://wa.me/5511949759433?text=Olá%20FF%20Elétrica,%20quero%20saber%20mais%20sobre%20${s.title}`} target="_blank" className="mt-auto text-[11px] font-black uppercase tracking-widest text-electric-yellow/40 group-hover:text-electric-yellow flex items-center gap-3 transition-colors">
+                                    Consultar Orçamento <span>→</span>
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+              </section>
+
+              {/* Qualidade Section */}
+              <section className="py-32 px-6 relative overflow-hidden bg-black/40">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20 text-left">
+                    <div className="flex-1 relative w-full flex justify-center">
+                        <div className="absolute w-80 h-80 bg-electric-yellow/10 blur-[100px] rounded-full"></div>
+                        <div className="relative aspect-square w-full max-w-sm bg-zinc-900 rounded-[80px] overflow-hidden border border-zinc-800 flex items-center justify-center shadow-2xl">
+                            <div className="flex flex-col items-center">
+                                <div className="w-24 h-24 bg-electric-yellow rounded-3xl flex items-center justify-center mb-6 shadow-xl shadow-electric-yellow/20">
+                                    <svg className="w-12 h-12 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                </div>
+                                <span className="text-xs font-black uppercase tracking-[0.4em] text-white/40">Qualidade Garantida</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex-1 space-y-10">
+                        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-white">Por que <br/><span className="text-electric-yellow italic sharp-text">escolher a FF?</span></h2>
+                        <p className="text-xl text-zinc-400 leading-relaxed font-light italic border-l-2 border-electric-yellow pl-8">
+                            "A FF Elétrica entrega segurança, eficiência energética e tecnologia de ponta para sua comodidade. Transformamos sua infraestrutura com o que há de mais moderno no mercado."
+                        </p>
+                        <div className="grid grid-cols-1 gap-10">
+                            <div className="flex items-center gap-6">
+                                <div className="text-5xl font-black text-white">10<span className="text-electric-yellow font-alexandria">+</span></div>
+                                <div className="text-[11px] uppercase font-bold text-zinc-500 tracking-widest leading-tight">Anos de experiência <br/>em projetos complexos</div>
+                            </div>
+                        </div>
+                        <div className="pt-4">
+                            <a href="https://wa.me/5511949759433" target="_blank" className="inline-block bg-white text-black px-12 py-5 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-electric-yellow transition-all shadow-xl">
+                                Solicitar Contato
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              </section>
+
+              {/* Footer - Ajustado para tom mais claro nas informações de direitos/desenvolvedor */}
+              <footer className="w-full border-t border-white/5 py-20 px-6 bg-zinc-950 text-center">
+                <div className="max-w-7xl mx-auto flex flex-col items-center gap-10">
+                  <div className="flex items-center gap-3 opacity-90 transition-all cursor-default">
+                    <div className="w-8 h-8 bg-electric-yellow rounded-lg flex items-center justify-center">
+                        <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <span className="text-2xl font-black uppercase tracking-tighter brand-font text-white">FF Elétrica</span>
+                  </div>
+                  <p className="text-sm text-zinc-400 max-w-sm font-light leading-relaxed">
+                    Sua segurança elétrica é nossa maior prioridade. <br/>
+                    Atendimento: Vale do Paraíba, Alto Tietê e São Paulo.
+                  </p>
+                  <div className="flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+                    <a href="#" className="hover:text-electric-yellow transition-colors">Início</a>
+                    <a href="#servicos" className="hover:text-electric-yellow transition-colors">Soluções</a>
+                    <a href="https://wa.me/5511949759433" className="hover:text-electric-yellow transition-colors">Contato</a>
+                  </div>
+                  <div className="pt-12 border-t border-white/5 w-full space-y-3">
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-[0.4em]">© 2024 FF Elétrica. Todos os direitos reservados.</p>
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-[0.4em]">
+                        Desenvolvido por <a href="https://wa.me/5511988484500" target="_blank" className="text-trafer-blue hover:underline font-bold transition-all">Trafer Digital</a>
+                    </p>
+                  </div>
+                </div>
+              </footer>
+
+              {/* Floating WhatsApp Mobile */}
+              <a href="https://wa.me/5511949759433" target="_blank" className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338-11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.148-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              </a>
+            </div>
+          );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
